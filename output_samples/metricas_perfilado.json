@@ -1,0 +1,124 @@
+{
+    "metadatos_pipeline": {
+        "fecha_ejecucion": "2026-11-12 20:09:54",
+        "norma_referencia": "ISO/IEC 25012 - Modelo de Calidad de Datos",
+        "dataset_salida": "processed/dataset_kdd_listo.csv",
+        "columnas_esquema": [
+            "id_transaccion",
+            "tienda",
+            "timestamp",
+            "categoria",
+            "importe_eur",
+            "unidades",
+            "metodo_pago"
+        ]
+    },
+    "integridad_criptografica_fase1": {
+        "total_ficheros_lote": 3,
+        "ficheros_validados_count": 2,
+        "ficheros_validados": [
+            "transacciones_tienda_este.csv",
+            "transacciones_tienda_norte.csv"
+        ],
+        "ficheros_rechazados_count": 1,
+        "ficheros_rechazados": [
+            "transacciones_tienda_sur.csv"
+        ],
+        "tasa_integridad_criptografica_pct": 66.67
+    },
+    "metricas_iso_25012": {
+        "completitud": {
+            "registros_brutos_verificados": 100,
+            "registros_sin_nulos_origen": 95,
+            "tasa_completitud_origen_pct": 95.0,
+            "registros_finales_kdd": 87,
+            "registros_sin_nulos_final": 87,
+            "tasa_completitud_final_pct": 100.0
+        },
+        "exactitud_y_validez": {
+            "registros_descartados_bad_records": 10,
+            "registros_segregados_outliers_iqr": 3,
+            "tasa_aprovechamiento_valido_lote_pct": 87.0
+        },
+        "unicidad": {
+            "ids_unicos": 87,
+            "tasa_unicidad_pct": 100.0
+        }
+    },
+    "distribucion_variables_clave": {
+        "importe_eur": {
+            "conteo": 87,
+            "media": 70.99,
+            "mediana": 73.44,
+            "desviacion_estandar": 26.34,
+            "minimo": 12.5,
+            "percentil_25": 53.8,
+            "percentil_75": 85.34,
+            "iqr": 31.54,
+            "maximo": 124.47,
+            "suma_total": 6175.83
+        },
+        "unidades": {
+            "conteo": 87,
+            "media": 3.79,
+            "mediana": 4.0,
+            "desviacion_estandar": 1.69,
+            "minimo": 1.0,
+            "percentil_25": 2.0,
+            "percentil_75": 5.0,
+            "iqr": 3.0,
+            "maximo": 6.0,
+            "suma_total": 330.0
+        }
+    },
+    "agregados_bi": {
+        "por_tienda": [
+            {
+                "tienda": "Este_Valencia",
+                "transacciones": 37,
+                "ingresos_eur": 2676.94,
+                "ticket_medio_eur": 72.35,
+                "unidades_totales": 141
+            },
+            {
+                "tienda": "Norte_Sevilla",
+                "transacciones": 50,
+                "ingresos_eur": 3498.89,
+                "ticket_medio_eur": 69.98,
+                "unidades_totales": 189
+            }
+        ],
+        "por_categoria": [
+            {
+                "categoria": "Alimentacion",
+                "transacciones": 20,
+                "ingresos_eur": 1444.26,
+                "ticket_medio_eur": 72.21
+            },
+            {
+                "categoria": "Deportes",
+                "transacciones": 10,
+                "ingresos_eur": 899.21,
+                "ticket_medio_eur": 89.92
+            },
+            {
+                "categoria": "Electronica",
+                "transacciones": 22,
+                "ingresos_eur": 1653.38,
+                "ticket_medio_eur": 75.15
+            },
+            {
+                "categoria": "Hogar",
+                "transacciones": 14,
+                "ingresos_eur": 677.4,
+                "ticket_medio_eur": 48.39
+            },
+            {
+                "categoria": "Textil",
+                "transacciones": 21,
+                "ingresos_eur": 1501.58,
+                "ticket_medio_eur": 71.5
+            }
+        ]
+    }
+}

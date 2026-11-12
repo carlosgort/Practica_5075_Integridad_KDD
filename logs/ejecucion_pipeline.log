@@ -1,0 +1,28 @@
+2026-11-12 19:58:40 | INFO     | === INICIO DE VERIFICACIÓN CRIPTOGRÁFICA DE LOTE ===
+2026-11-12 19:58:40 | INFO     | Manifiesto de referencia: manifest_checksums.sha256
+2026-11-12 19:58:40 | INFO     | [OK] 'transacciones_tienda_norte.csv' verificado correctamente (SHA-256: 34cc61612494703f...). Movido a staging/verified/
+2026-11-12 19:58:40 | ERROR    | [ALERTA SEGURIDAD] 'transacciones_tienda_sur.csv' ALTERADO O CORRUPTO. Esperado: 0773c2cde0d45d3b... | Calculado: 1c47dff4bf34eff5... Aislado en quarantine/tampered/
+2026-11-12 19:58:40 | INFO     | [OK] 'transacciones_tienda_este.csv' verificado correctamente (SHA-256: 645e9de21d1fbe99...). Movido a staging/verified/
+2026-11-12 19:58:40 | INFO     | === RESUMEN FASE 1 | Verificados: 2 | Cuarentena: 1 | Ausentes: 0 ===
+2026-11-12 20:04:29 | INFO     | === INICIO FASE 2: SANEAMIENTO, COHERENCIA Y OUTLIERS ===
+2026-11-12 20:04:29 | INFO     | Cargado 'transacciones_tienda_este.csv': 50 registros.
+2026-11-12 20:04:29 | INFO     | Cargado 'transacciones_tienda_norte.csv': 50 registros.
+2026-11-12 20:04:29 | INFO     | Total registros consolidados en staging/verified/: 100
+2026-11-12 20:04:29 | WARNING  | [CUARENTENA] 2 registro(s) descartados -> NULO_COLUMNA_OBLIGATORIA (id_transaccion)
+2026-11-12 20:04:29 | WARNING  | [CUARENTENA] 1 registro(s) descartados -> NULO_COLUMNA_OBLIGATORIA (importe_eur)
+2026-11-12 20:04:29 | WARNING  | [CUARENTENA] 1 registro(s) descartados -> ERROR_TEMPORAL (formato_invalido_no_ISO8601)
+2026-11-12 20:04:29 | WARNING  | [CUARENTENA] 1 registro(s) descartados -> ERROR_TEMPORAL (fecha_anterior_anio_2026)
+2026-11-12 20:04:29 | WARNING  | [CUARENTENA] 1 registro(s) descartados -> ERROR_TEMPORAL (fecha_futura_no_coherente)
+2026-11-12 20:04:29 | WARNING  | [CUARENTENA] 2 registro(s) descartados -> ERROR_DOMINIO (importe_eur <= 0 o no numerico)
+2026-11-12 20:04:29 | WARNING  | [CUARENTENA] 2 registro(s) descartados -> ERROR_DOMINIO (unidades < 1 o no entero)
+2026-11-12 20:04:29 | INFO     | [IMPUTACION] 1 nulo(s) en variable secundaria 'categoria' imputados con la moda ('Electronica').
+2026-11-12 20:04:29 | INFO     | [IMPUTACION] 1 nulo(s) en variable secundaria 'metodo_pago' imputados con la moda ('Transferencia').
+2026-11-12 20:04:29 | INFO     | Exportados 10 registros inválidos a quarantine\bad_records.csv
+2026-11-12 20:04:29 | INFO     | [ANALISIS IQR] Q1=55.22 EUR | Q3=88.57 EUR | IQR=33.36 EUR | Rango aceptado=[5.18, 138.61] EUR
+2026-11-12 20:04:29 | WARNING  | [OUTLIERS] 3 valor(es) atípicos extremos segregados a quarantine\outliers.csv
+2026-11-12 20:04:29 | INFO     | === FIN FASE 2 | Brutos: 100 | Bad Records: 10 | Outliers: 3 | Limpios para BI/KDD: 87 ===
+2026-11-12 20:09:54 | INFO     | === INICIO FASE 3: PERFILADO KDD E INFORME DE CALIDAD (ISO/IEC 25012) ===
+2026-11-12 20:09:54 | INFO     | [EXPORTACION] Dataset conforme guardado en 'processed/dataset_kdd_listo.csv' (87 registros x 7 columnas).
+2026-11-12 20:09:54 | INFO     | [REPORTE JSON] Generado en 'processed/data_profiling_summary.json'
+2026-11-12 20:09:54 | INFO     | [REPORTE MD] Generado en 'processed/data_profiling_summary.md'
+2026-11-12 20:09:54 | INFO     | === FIN FASE 3: PIPELINE COMPLETADO CON ÉXITO ===

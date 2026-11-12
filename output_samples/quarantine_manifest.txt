@@ -1,0 +1,45 @@
+========================================================================
+MANIFIESTO DE CUARENTENA Y ESTRUCTURA DE DIRECTORIOS DE EJECUCIÓN
+========================================================================
+
+1. JERARQUÍA DE DIRECTORIOS GENERADA (quarantine/, staging/, processed/)
+------------------------------------------------------------------------
+practica_kdd/
+├── quarantine/
+│   ├── tampered/
+│   │   └── transacciones_tienda_sur.csv (3894 B)
+│   ├── bad_records.csv (1608 B)
+│   └── outliers.csv (586 B)
+├── staging/
+│   ├── cleaned/
+│   │   └── transacciones_limpias.csv (7069 B)
+│   └── verified/
+│       ├── transacciones_tienda_este.csv (3975 B)
+│       └── transacciones_tienda_norte.csv (4046 B)
+└── processed/
+    ├── data_profiling_summary.json (3888 B)
+    ├── data_profiling_summary.md (2928 B)
+    └── dataset_kdd_listo.csv (7069 B)
+
+2. FICHEROS AISLADOS POR FALLO CRIPTOGRÁFICO SHA-256 (quarantine/tampered/)
+------------------------------------------------------------------------
+- transacciones_tienda_sur.csv | Motivo: Discrepancia de firma SHA-256 frente a manifest_checksums.sha256
+
+3. REGISTROS INVÁLIDOS SEGREGADOS (quarantine/bad_records.csv) -> Total: 10
+------------------------------------------------------------------------
+- Origen: transacciones_tienda_este.csv | ID: NULL | Motivo: NULO_COLUMNA_OBLIGATORIA (id_transaccion)
+- Origen: transacciones_tienda_este.csv | ID: NULL | Motivo: NULO_COLUMNA_OBLIGATORIA (id_transaccion)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0034 | Motivo: NULO_COLUMNA_OBLIGATORIA (importe_eur)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0039 | Motivo: ERROR_TEMPORAL (formato_invalido_no_ISO8601)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0022 | Motivo: ERROR_TEMPORAL (fecha_anterior_anio_2026)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0010 | Motivo: ERROR_TEMPORAL (fecha_futura_no_coherente)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0012 | Motivo: ERROR_DOMINIO (importe_eur <= 0 o no numerico)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0018 | Motivo: ERROR_DOMINIO (importe_eur <= 0 o no numerico)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0025 | Motivo: ERROR_DOMINIO (unidades < 1 o no entero)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0042 | Motivo: ERROR_DOMINIO (unidades < 1 o no entero)
+
+4. OUTLIERS ESTADÍSTICOS SEGREGADOS (quarantine/outliers.csv) -> Total: 3
+------------------------------------------------------------------------
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0016 | Importe: 1480.00 EUR | Motivo: OUTLIER_ESTADISTICO_IQR (importe_eur > 138.61 EUR)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0032 | Importe: 2750.90 EUR | Motivo: OUTLIER_ESTADISTICO_IQR (importe_eur > 138.61 EUR)
+- Origen: transacciones_tienda_este.csv | ID: TXE-20261110-0047 | Importe: 4120.00 EUR | Motivo: OUTLIER_ESTADISTICO_IQR (importe_eur > 138.61 EUR)
